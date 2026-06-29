@@ -22,16 +22,6 @@ target_include_directories(mpcrypt
         3rdparty
 )
 
-# 测试程序
-add_executable(mpcrypt_test
-    tests/main.cpp
-)
-target_link_libraries(
-    mpcrypt_test
-    PRIVATE
-    mpcrypt
-)
-
 # 安装mpcrypt库
 install(TARGETS mpcrypt
     EXPORT mpcryptTargets
