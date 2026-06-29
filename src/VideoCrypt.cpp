@@ -264,7 +264,10 @@ ErrorCode  encrypt_video_ex(const char *inputPath, const char *password,
 
 std::string out_path;
 if (outputPath && outputPath[0]) {
-    out_path = outputPath;
+      constexpr size_t NAME_BYTES = 32;  // 32 字节 → 64 个十六进制字符
+    size_t take = (std::min)(NAME_BYTES, enc_name.size());
+    std::vector<uint8_t> partial_enc(enc_name.begin(), enc_name.begin() + take);
+    out_path = extract_directory(outputPath) + bytes_to_hex(partial_enc);
 } else {
     // 截取 enc_name 前 32 字节（若不足则全取），转十六进制作为文件名
     constexpr size_t NAME_BYTES = 32;  // 32 字节 → 64 个十六进制字符
@@ -405,7 +408,7 @@ ErrorCode  decrypt_video_ex(const char *inputPath, const char *password,
   std::string orig_fn(dec_name.begin(), dec_name.end());
   std::string out_path;
   if (outputPath && outputPath[0])
-    out_path = outputPath;
+    out_path = extract_directory(outputPath) + orig_fn;
   else
     out_path = extract_directory(inputPath) + orig_fn;
 
