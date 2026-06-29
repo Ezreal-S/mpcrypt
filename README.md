@@ -1,4 +1,4 @@
-# 🔐 mpcrypt —— MP4 视频加密库
+# 🔐 mpcrypt —— MP4 视频加密库(其实其他文件也可以用这个加密,做这个的初衷就是为了让mp4文件不那么容易被打开,所以称之为MP4 视频加密库) 
 
 一个**高性能、跨平台**的 C++ 加密库，专门用于保护 MP4 视频文件。
 仅加密文件头部，破坏播放器解析，同时支持文件名加密、随机填充、密码校验，并提供了恢复原文件名的解密能力。
@@ -55,7 +55,7 @@
 ### 编译
 
 ```bash
-git clone https://github.com/yourname/mpcrypt.git
+git clone https://github.com/Ezreal-S/mpcrypt.git
 cd mpcrypt
 
 cmake -B build -DCMAKE_BUILD_TYPE=Release
